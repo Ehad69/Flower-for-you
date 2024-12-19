@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --glassFullStrength: rgb(0, 153, 153);
+  --glassFaded: #b3ffff;
+  --stemFullStrength: rgb(0, 51, 13);
+  --stemFaded: rgb(0, 153, 38);
+  --pink: rgb(231, 9, 183);
+  --blue: rgb(0, 132, 255);
+  --white: white;
+  --bdayFont: "Dancing Script", cursive;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.app {
+  max-width: 144rem;
+  margin: 0 auto;
+  border: 1px solid black;
+  min-height: 100vh;
+  background: linear-gradient(black, darkblue);
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+}
+
+.app-overlay {
+  position: absolute;
+  background-image: url("./cardbg.avif");
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 12.5%;
+
+  animation: scrolloverlay 20s forwards linear infinite alternate;
+}
+
+@keyframes scrolloverlay {
+  100% {
+    transform: translateX(-50vw);
+  }
+}
+
+.app-overlay::before {
+  inset: 0;
+  position: absolute;
+  content: "";
+  background-image: url("./cardbg.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateX(-100%) rotateY(-180deg);
+}
+
+.app-overlay::after {
+  inset: 0;
+  position: absolute;
+  content: "";
+  background-image: url("./cardbg.avif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateX(100%) rotateY(180deg);
+}
+
+.bg-color-selector {
+  display: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10rem;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#confetti-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transform: scale(0);
+  animation: scalegreeting 2s 3s linear forwards;
+}
+
+@keyframes scalegreeting {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 1px 1px 15px var(--pink), 1px 1px 35px var(--pink);
+  }
+}
+
+.h1-header {
+  color: white;
+  font-family: var(--bdayFont);
+  font-size: 4rem;
+  letter-spacing: 0.25rem;
+  /* text-shadow: 1px 1px 20px var(--pink); */
+}
+
+.header-caption {
+  display: flex;
+  gap: 1rem;
+  transform: translateX(5rem);
+  transform: scale(0);
+  animation: scalegreeting 2s 4s linear forwards;
+}
+
+h3 {
+  color: white;
+  font-family: var(--bdayFont);
+  font-size: 3rem;
+}
+
+.vase-flowers-parent-container {
+  position: absolute;
+  height: 300px;
+  width: 200px;
+  /* border: 2px solid white; */
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.glass {
+  position: absolute;
+  height: 80%;
+  width: 65%;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  z-index: 50;
+}
+
+.top-glass,
+.bottom-glass,
+.water {
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--glassFullStrength),
+    var(--glassFaded)
+  );
+}
+
+.top-glass,
+.bottom-glass {
+  opacity: 55%;
+  box-shadow: -15px 1px 45px black inset,
+    -25px 1px 65px rgba(0, 0, 0, 0.2) inset;
+}
+
+.top-glass {
+  top: 0;
+  height: 100%;
+  animation: shrinkglass 1s 1s forwards;
+  /* height: 40%; remove after */
+}
+
+@keyframes shrinkglass {
+  100% {
+    height: 40%;
+  }
+}
+
+.water {
+  height: 0%;
+  bottom: 5%;
+  opacity: 35%;
+  box-shadow: -15px 0px 15px black inset;
+  animation: pourwater 1s 1s forwards;
+  /* height: 55%; */
+}
+
+@keyframes pourwater {
+  100% {
+    height: 55%;
+  }
+}
+
+.bottom-glass {
+  height: 5%;
+  bottom: 0;
+}
+
+/*Flowers */
+
+.flower {
+  height: 115%;
+  width: 125px;
+  /* border: 2px solid orange; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  transform-origin: bottom;
+}
+
+.flower-one {
+  height: 150%;
+}
+
+.flower-two {
+  transform: rotate(10deg);
+}
+
+.flower-three {
+  transform: translateX(5rem) rotate(-17deg);
+}
+
+.flower-pedals-parent {
+  width: 100%;
+  height: 100px;
+  /* border: 1px solid red; */
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.flower-pedals-parent::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: black;
+  bottom: 5%;
+  right: 25%;
+  filter: blur(25px);
+  opacity: 85%;
+}
+
+.pink {
+  background: var(--pink);
+}
+
+.blue {
+  background: var(--blue);
+}
+
+.white {
+  background: var(--white);
+}
+
+.flower-pedal {
+  height: 100%;
+  width: 70px;
+  position: absolute;
+  transform-origin: bottom;
+  /* border: 1px solid white; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 75%;
+}
+
+.mini-pedal {
+  width: 45%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  transform-origin: bottom;
+}
+
+.flower-pedal-left {
+  /* transform: rotate(25deg); */
+  animation: pedalleft 1s 3s forwards;
+}
+
+@keyframes pedalleft {
+  75% {
+    transform: rotate(25deg);
+  }
+  100% {
+    background: none;
+    transform: rotate(25deg);
+  }
+}
+
+.mini-pedal-left {
+  animation: minipedalleft 1s 4s forwards;
+  /* transform: rotate(10deg); */
+}
+
+@keyframes minipedalleft {
+  100% {
+    transform: rotate(12.5deg);
+  }
+}
+
+.flower-pedal-right {
+  /* transform: rotate(-25deg); */
+  animation: pedalright 1s 3s forwards;
+}
+
+@keyframes pedalright {
+  75% {
+    transform: rotate(-25deg);
+  }
+  100% {
+    background: none;
+    transform: rotate(-25deg);
+  }
+}
+
+.mini-pedal-right {
+  animation: minipedalright 1s 4s forwards;
+
+  /* transform: rotate(-10deg); */
+}
+
+@keyframes minipedalright {
+  100% {
+    transform: rotate(-14deg);
+  }
+}
+
+.flower-pedal-center {
+  animation: clearbackground 2s 1s forwards;
+}
+
+@keyframes clearbackground {
+  100% {
+    background: none;
+  }
+}
+
+.shadow-r {
+  box-shadow: -5px -5px 10px black inset;
+}
+
+.flower-stem {
+  width: 20px;
+  height: 90%;
+  background: linear-gradient(
+    to right,
+    var(--stemFullStrength),
+    var(--stemFaded)
+  );
+  position: absolute;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
